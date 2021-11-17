@@ -145,32 +145,19 @@ namespace TalionPowers
                     corruptCreature = handle.gameObject.GetComponentInParent<Creature>();
                     if (ring.data.id == "IsildurRing")
                     {
-                        foreach (CreatureData.EyeColor color in corruptCreature.data.eyesColors)
-                        {
-                            color.iris = Color.green;
-                            color.sclera = Color.black;
-                        }
-
-                        corruptCreature.SetColor(Color.green, Creature.ColorModifier.EyesIris, true);
-                        corruptCreature.SetColor(Color.black, Creature.ColorModifier.EyesSclera, true);
                         if (corruptCreature.isKilled)
                         {
                             corruptCreature.Resurrect(corruptCreature.maxHealth, corruptCreature);
                             corruptCreature.brain.Load(corruptCreature.brain.instance.id);
                         }
-
+                        corruptCreature.SetColor(Color.green, Creature.ColorModifier.EyesIris, true);
+                        corruptCreature.SetColor(Color.black, Creature.ColorModifier.EyesSclera, true);
                         corruptCreature.SetFaction(2);
                         corruptCreature.brain.Load(corruptCreature.brain.instance.id);
                         corrupting = false;
                     }
                     else if (ring.data.id == "CelebrimborRing" && !corruptCreature.isKilled)
                     {
-                        foreach (CreatureData.EyeColor color in corruptCreature.data.eyesColors)
-                        {
-                            color.iris = Color.white;
-                            color.sclera = new Color(0, 1, 1);
-                        }
-
                         corruptCreature.SetColor(Color.white, Creature.ColorModifier.EyesIris, true);
                         corruptCreature.SetColor(new Color(0, 1, 1), Creature.ColorModifier.EyesSclera, true);
                         corruptCreature.SetFaction(2);
